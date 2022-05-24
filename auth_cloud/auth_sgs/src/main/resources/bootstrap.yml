@@ -1,0 +1,23 @@
+server:
+  port: 2004
+spring:
+  application:
+    name: auth-sgs-boot
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://110.40.207.142:8848
+      config:
+        enabled: false
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+logging:
+  level:
+    spring.: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

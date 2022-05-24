@@ -1,0 +1,34 @@
+server:
+  port: 2003
+spring:
+  application:
+    name: auth_gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://110.40.207.142:8848
+      config:
+        enabled: false
+    gateway:
+      routes: #配置路由路径
+        - id: admin-boot
+          uri: lb://auth-admin-boot
+          predicates:
+            - Path=/admin-boot/**
+          filters:
+            - StripPrefix=1
+        - id: auth-sgsa
+          uri: lb://auth-sgs-boot
+          predicates:
+            - Path=/auth-sgsa/**
+          filters:
+            - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能
+          lower-case-service-id: true #使用小写服务名，默认是大写
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+

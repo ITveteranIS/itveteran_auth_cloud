@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1817ea9d-1602-4cd9-a4b2-baa1df36bfaa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/auth_cloud/auth_common/common_dto/src/main/resources/ValidationMessages.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth_cloud/auth_common/common_mybatis_plus/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth_cloud/auth_sgs/src/main/java/com/sga/securit/datails/user/SysUserDatails.java" afterDir="false" />
-    </list>
+    <list default="true" id="1817ea9d-1602-4cd9-a4b2-baa1df36bfaa" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +88,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653382094403</updated>
-      <workItem from="1653382104032" duration="3495000" />
+      <workItem from="1653382104032" duration="4261000" />
     </task>
     <servers />
   </component>

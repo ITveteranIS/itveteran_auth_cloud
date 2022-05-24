@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/common_base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/common_dto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/common_mybatis_plus/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/common_redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/common_redis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/common_web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/auth_sgs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth_cloud/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

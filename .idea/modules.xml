@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_cloud.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_common/auth_common.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_common/auth_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_gateway/auth_gateway.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_gateway/auth_gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_sgs/auth_sgs.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_sgs/auth_sgs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_common/common_base/common_base.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_common/common_base/common_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_common/common_dto/common_dto.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_common/common_dto/common_dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_common/common_mybatis_plus/common_mybatis_plus.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_common/common_mybatis_plus/common_mybatis_plus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_common/common_redis/common_redis.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_common/common_redis/common_redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth_cloud/auth_common/common_web/common_web.iml" filepath="$PROJECT_DIR$/auth_cloud/auth_common/common_web/common_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/itveteran_auth_cloud.iml" filepath="$PROJECT_DIR$/.idea/itveteran_auth_cloud.iml" />
+    </modules>
+  </component>
+</project>

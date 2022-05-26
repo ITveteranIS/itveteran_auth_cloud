@@ -21,8 +21,8 @@ import java.util.LinkedHashMap;
 public enum RestEnum {
     SYSTEM_PARAM_FAIL(2001, "参数验证失败"),
     SYSTEM_DATA_FAIL(2002, "参数验证异常"),
-
-    SUCCESS(000000, "成功"),
+    ERROR(500, "服务器异常"),
+    SUCCESS(1, "成功"),
     SYSTEM_EXECUTION_ERROR(999999, "系统执行出错"),
     USERNAME_OR_PASSWORD_ERROR(100, "用户名或密码错误"),
     USER_NOT_EXIST(101, "用户不存在"),
@@ -32,6 +32,8 @@ public enum RestEnum {
     TOKEN_ACCESS_FORBIDDEN(215, "token禁止访问"),
     FLOW_LIMITING(210, "系统限流"),
     DEGRADATION(220, "系统功能降级"),
+    ABNORMAlACCOUNT(8012,"账户异常"),
+    TOEKNINVALIDOREXPIREDHASH(8013,"token 无效或已过期"),
     SERVICE_NO_AUTHORITY(221, "服务未授权");
 
     public final Integer code;

@@ -49,7 +49,7 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(value = DataIntegrityViolationException.class)
     @ResponseBody
     public ResultResponse requestExceptionHandler(DataIntegrityViolationException e){
-        return ResultResponse.builder().messages(RestEnum.SYSTEM_DATA_FAIL.messages).code(RestEnum.SYSTEM_EXECUTION_ERROR.code).build();
+        return ResultResponse.builder().messages(RestEnum.SYSTEM_DATA_FAIL.messages).code(RestEnum.ERROR.code).build();
     }
     String mess="";
     String m="";
@@ -61,7 +61,7 @@ public class GlobalDefaultExceptionHandler {
         if(e instanceof MethodArgumentNotValidException) {
         MethodArgumentNotValidException exs = (MethodArgumentNotValidException) e;
         BindingResult result = e.getBindingResult();
-        String s = "参数验证失败->";
+        String s = "参数验证失败::";
         if(result.hasErrors()){
             List<ObjectError> errors = result.getAllErrors();
             mess = errors.get(0).getDefaultMessage();

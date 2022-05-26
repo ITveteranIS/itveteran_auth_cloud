@@ -1,11 +1,9 @@
 package com.sga.controller;
 
+import com.bases.restult.ResultResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : ITveteran•JIE
@@ -20,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestsController {
     @ApiOperation("添加订单")
-    @PostMapping("/creates")
-    public Object create(@RequestBody String o) {
-        return o;
+    @GetMapping("/creates")
+    public Object create(String o) {
+        System.out.println(o);
+        System.out.println("-=-=-=-=-=-=-=-=-=-=0=0=0=0=0=0=0-=-=-=-=-=-=-=-=-=");
+        return ResultResponse.SUCCESS(o);
     }
+
 }

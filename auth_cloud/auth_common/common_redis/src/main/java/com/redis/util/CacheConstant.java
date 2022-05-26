@@ -10,5 +10,17 @@ import org.springframework.stereotype.Component;
  */
 @SuppressWarnings("all")
 public interface CacheConstant {
+    /**
+     * <span>Description:</span><span style="color:yellow"> ♥{用户 cache name}♥ </span>
+     * @author it veteran Jie
+     * @Date: Create 2021-12月-1 周三 13:39:41 +0800
+     */
+    String USER_CACHE_NAME = "user_cache";
+    /**
+     * <span>Description:</span><span style="color:yellow"> ♥{用户信息缓存key前缀}♥ </span>
+     * @author it veteran Jie
+     * @Date: Create 2021-12月-1 周三 13:39:58 +0800
+     */
+    String USER_CACHE_KEY_PREFIX = "user_";
 
 }

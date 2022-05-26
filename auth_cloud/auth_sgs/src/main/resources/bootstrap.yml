@@ -1,8 +1,31 @@
 server:
   port: 2004
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://110.40.207.142:3306/oauth_cloud?&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 12345
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+      database: 0
+      port: 6379
+      host: 110.40.207.142
+      password: 123456
+  cache:
+    # 缓存类型
+    type: redis
+    # 缓存时间(单位：ms)
+    redis:
+      time-to-live: 3600000
+      # 缓存null值，防止缓存穿透
+      cache-null-values: true
+      # 允许使用缓存前缀，
+      use-key-prefix: true
+      # 缓存前缀，没有设置使用注解的缓存名称(value)作为前缀，和注解的key用双冒号::拼接组成完整缓存key
+      key-prefix: 'admin:'
   application:
-    name: auth-sgs-boot
+    name: sgs-boot
   cloud:
     nacos:
       discovery:
@@ -13,6 +36,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+#    servlet:
+#      load-on-startup: 1
 logging:
   level:
     spring.: DEBUG
@@ -21,3 +46,21 @@ management:
     web:
       exposure:
         include: "*"
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 10000
+  SocketTimeout: 10000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+
+feign:
+  httpclient:
+    enabled: true
+  okhttp:
+    enabled: false
+mybatis-plus:
+  configuration:
+    # 驼峰下划线转换
+    map-underscore-to-camel-case: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

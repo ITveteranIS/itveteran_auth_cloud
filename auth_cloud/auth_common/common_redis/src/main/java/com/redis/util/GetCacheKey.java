@@ -12,4 +12,15 @@ import org.springframework.stereotype.Component;
  */
 
 public interface GetCacheKey {
+    /**
+     * <span>Description:</span><span style="color:yellow"> ♥{获取用户key}♥ </span>
+     * @MethodName: getUserCacheKey
+     * @author it veteran Jie
+     * @param  suffix 后缀是什么
+     * @returned
+     * @Date: Create 2021-12月-1 周三 14:07:33 +0800
+     */
+    static String getUserCacheKey(String suffix) {
+        return CacheConstant.USER_CACHE_NAME + "::" + CacheConstant.USER_CACHE_KEY_PREFIX + suffix;
+    }
 }

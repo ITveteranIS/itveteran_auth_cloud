@@ -49,10 +49,41 @@ public class ResultResponse<T> implements Serializable {
         return build(RestEnum.SUCCESS, data);
     }
 
-    public synchronized static <T> ResultResponse<T> failed(List<?> list) {
+    public synchronized static <T> ResultResponse<T> failed() {
         return build(RestEnum.SYSTEM_EXECUTION_ERROR, null);
     }
     public synchronized static <T> ResultResponse<T> failed(T data) {
         return build(RestEnum.SYSTEM_EXECUTION_ERROR, data);
     }
+    public synchronized static <T> ResultResponse<T> FAINLEDUSERNAME() {
+        return build(RestEnum.USER_NOT_EXIST, null);
+    }
+    public synchronized static <T> ResultResponse<T> ABNORMAlACCOUNT() {
+        return build(RestEnum.ABNORMAlACCOUNT, null);
+    }
+    public synchronized static <T> ResultResponse<T> TOEKNINVALIDOREXPIREDHASH() {
+        return build(RestEnum.TOEKNINVALIDOREXPIREDHASH, null);
+    }
+
+
+    public synchronized static <T> ResultResponse<T> USERNAMEORPASSWORD() {
+        return build(RestEnum.USERNAME_OR_PASSWORD_ERROR, null);
+    }
+    public synchronized static <T> ResultResponse<T> CLIENTAUTHENTICATIONFAILED() {
+        return build(RestEnum.CLIENT_AUTHENTICATION_FAILED, null);
+    }
+
+    public static <T> ResultResponse<T> failed(IResultCode resultCode) {
+        return result(resultCode.getCode(), resultCode.getMsg(), null);
+    }
+    private static <T> ResultResponse<T> result(Integer code, String msg, T data) {
+        ResultResponse<T> result = new ResultResponse<>();
+        result.setCode(code);
+        result.setData(data);
+        result.setMessages(msg);
+        return result;
+    }
+
+
+
 }

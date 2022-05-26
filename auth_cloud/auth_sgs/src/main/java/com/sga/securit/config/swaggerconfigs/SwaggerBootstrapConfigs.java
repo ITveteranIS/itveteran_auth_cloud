@@ -46,22 +46,4 @@ public class SwaggerBootstrapConfigs {
                 .build();
     }
 
-//    @Bean
-//    public Docket createRestApis(){
-//        return  new Docket(DocumentationType.SWAGGER_2)
-//                .apiInfo(apiInfo())
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.boots.controller"))
-//                .paths(PathSelectors.any())
-//                .build();
-//    }
-//    private ApiInfo apiInfo(){
-//        return new ApiInfoBuilder()
-//                .title("food API")
-//                .description("cloud api接口文档！！")
-//                .termsOfServiceUrl("开发中[请稍后]")
-//                .contact(new Contact("it_veteran_jie ", "https://www.baidu.com","itveteran.jie@gmail.com"))
-//                .version("1.0V")
-//                .build();
-//    }
 }

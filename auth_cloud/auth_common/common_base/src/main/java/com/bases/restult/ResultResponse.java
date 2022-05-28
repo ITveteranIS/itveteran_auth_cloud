@@ -55,6 +55,22 @@ public class ResultResponse<T> implements Serializable {
     public synchronized static <T> ResultResponse<T> failed(T data) {
         return build(RestEnum.SYSTEM_EXECUTION_ERROR, data);
     }
+
+    public static <T> ResultResponse<T> faileds(RestEnum resultCode) {
+        return result(resultCode.getCode(), resultCode.getMessages(), null);
+    }
+    public static <T> ResultResponse<T> forbidden(T data) {
+        return new ResultResponse<T>(RestEnum.FORBIDDEN.getCode(), RestEnum.FORBIDDEN.getMessages(), data);
+    }
+
+    public static <T> ResultResponse<T> forbidden() {
+        return new ResultResponse<T>(RestEnum.FORBIDDEN.getCode(), RestEnum.FORBIDDEN.getMessages(), null);
+    }
+    public static <T> ResultResponse<T> unauthorized(T data) {
+        return new ResultResponse<T>(RestEnum.TOEKNINVALIDOREXPIREDHASH.getCode(), RestEnum.TOEKNINVALIDOREXPIREDHASH.getMessages(), data);
+    }
+
+
     public synchronized static <T> ResultResponse<T> FAINLEDUSERNAME() {
         return build(RestEnum.USER_NOT_EXIST, null);
     }
@@ -83,7 +99,5 @@ public class ResultResponse<T> implements Serializable {
         result.setMessages(msg);
         return result;
     }
-
-
 
 }

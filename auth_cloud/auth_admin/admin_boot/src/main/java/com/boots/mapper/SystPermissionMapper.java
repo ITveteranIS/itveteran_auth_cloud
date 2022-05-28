@@ -29,10 +29,19 @@ public interface SystPermissionMapper extends BaseMapper<SystPermission> {
             @Result(property = "name",column = "name",jdbcType = JdbcType.VARCHAR),
             @Result(property = "menuId",column = "menu_id",jdbcType = JdbcType.BIGINT),
             @Result(property = "urlPerm",column = "url_perm",jdbcType = JdbcType.VARCHAR),
-            @Result(property = "roles",column = "code",javaType = List.class,many = @Many(select = "listPermCode")),
+            @Result(property = "roles",column = "id",javaType = List.class,many = @Many(select = "listPermCode")),
     })
     List<SystPermission> listPermRoles();
-    @Select("select syst_role.code  as roleCode  from syst_role where syst_role.code  = #{code}")
-    List<String> listPermCode(String code);
+
+    @Select(" SELECT t3.code  as roleCode \n" +
+            "FROM syst_permission t1\n" +
+            "LEFT JOIN syst_role_permission t2 ON t1.id = t2.permission_id\n" +
+            "LEFT JOIN syst_role t3 ON t2.role_id = t3.id where  t1.id =#{id}")
+    List<String> listPermCode(Long id);
+
+    @Select("SELECT *  FROM syst_permission t1\n" +
+            "LEFT JOIN syst_role_permission t2 ON t1.id = t2.permission_id\n" +
+            "LEFT JOIN syst_role t3 ON t2.role_id = t3.id where  t3.code =#{role}")
+    boolean nameRole(String role);
 
 }

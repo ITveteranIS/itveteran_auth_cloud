@@ -22,4 +22,8 @@ public interface UserFeignClient {
      */
     @GetMapping("/api/v1/users/username/{username}")
     ResultResponse<UserAuthDTO> getUserByUsername(@PathVariable String username);
+
+    @GetMapping("/api/v1/users/role")
+    public Object roles(String role);
 }
+

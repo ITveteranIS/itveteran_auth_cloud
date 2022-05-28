@@ -1,4 +1,5 @@
 package com.boots.service.impl;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -49,6 +50,7 @@ public class ISystPermissionImpl extends ServiceImpl<SystPermissionMapper, SystP
     public Boolean refreshPermRolesRules() {
         redisTemplate.delete(Arrays.asList(GlobalConstants.URL_PERM_ROLES_KEY));
         List<SystPermission> permissions = this.listPermRoles();
+        System.out.println(permissions+"------------------");
         if (CollectionUtil.isNotEmpty(permissions)){
             // 初始化URL- 角色规则
             List<SystPermission> urlPermList = permissions.stream()
@@ -59,11 +61,17 @@ public class ISystPermissionImpl extends ServiceImpl<SystPermissionMapper, SystP
                 urlPermList.stream().forEach(item->{
                     String perm=item.getUrlPerm();
                     List<String> itemRoles = item.getRoles();
-                    urlPermRoles.put(perm, itemRoles);
+                    System.out.println(perm+"——————"+itemRoles); //是这里输出的啊 我然后 在放到 map 到 redis 中的
+                    urlPermRoles.put(perm,itemRoles);
                 });
                 redisTemplate.opsForHash().putAll(GlobalConstants.URL_PERM_ROLES_KEY, urlPermRoles);
             }
         }
         return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean nameRole(String role) {
+        return this.baseMapper.nameRole(role);
     }
 }

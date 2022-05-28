@@ -3,6 +3,7 @@ package com.boots.controller;
 import com.api.dto.UserAuthDTO;
 import com.bases.restult.ResultResponse;
 import com.boots.service.ISysUserService;
+import com.boots.service.ISystPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,17 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private  final ISysUserService iSysUserService;
+    private final ISystPermissionService iSystPermissionService;
     @ApiOperation("获取用户信息")
     @GetMapping("/username/{username}")
     public Object getUserByUsername(@PathVariable String username){
         return ResultResponse.SUCCESS(iSysUserService.getByuserName(username));
     }
+
+    @ApiOperation("判断角色")
+    @GetMapping("/role")
+    public Object roles(String role){
+        return ResultResponse.SUCCESS(iSystPermissionService.nameRole(role));
+    }
+
 }

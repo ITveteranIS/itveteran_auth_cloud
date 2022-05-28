@@ -1,10 +1,9 @@
 package com.gateway.security;
 
-import cn.hutool.core.convert.Convert;
 import com.bases.constan.SecurityConstants;
 import com.bases.restult.RestEnum;
+import com.gateway.config.RestfulAccessDeniedHandler;
 import com.gateway.util.ResponseUtils;
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -20,8 +19,6 @@ import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.security.web.server.authorization.ServerAccessDeniedHandler;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 /**
  * @author : ITveteran•JIE
  * @version 1.0x
@@ -36,9 +33,11 @@ import java.util.List;
 public class ResourceServerConfig {
     private final ResourceServerManager resourceServerManager;
 
-    public ResourceServerConfig(ResourceServerManager resourceServerManager) {
+    public ResourceServerConfig(ResourceServerManager resourceServerManager, RestfulAccessDeniedHandler restfulAccessDeniedHandler) {
         this.resourceServerManager = resourceServerManager;
+        this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
     }
+    private  final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
@@ -47,7 +46,7 @@ public class ResourceServerConfig {
                 .anyExchange().access(resourceServerManager)
                 .and()
                 .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler()) // 处理未授权
+                .accessDeniedHandler(restfulAccessDeniedHandler) // 处理未授权
                 .authenticationEntryPoint(authenticationEntryPoint()) //处理未认证
                 .and().csrf().disable();
         return http.build();
@@ -82,7 +81,6 @@ public class ResourceServerConfig {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         jwtGrantedAuthoritiesConverter.setAuthorityPrefix(SecurityConstants.AUTHORITY_PREFIX);
         jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName(SecurityConstants.JWT_AUTHORITIES_KEY);
-
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);

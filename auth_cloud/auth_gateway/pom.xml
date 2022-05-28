@@ -50,10 +50,10 @@
             <artifactId>knife4j-micro-spring-boot-starter</artifactId>
             <version>3.0.3</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -68,6 +68,12 @@
             <artifactId>spring-security-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.redis</groupId>
+            <artifactId>common_redis</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-jose</artifactId>
         </dependency>
@@ -76,6 +82,12 @@
                     <artifactId>common_base</artifactId>
                     <version>0.0.1-SNAPSHOT</version>
                 </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.boots</groupId>-->
+<!--            <artifactId>admin_boot</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
 </project>

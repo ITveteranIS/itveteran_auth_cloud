@@ -28,13 +28,14 @@ public enum RestEnum {
     USER_NOT_EXIST(101, "用户不存在"),
     CLIENT_AUTHENTICATION_FAILED(212, "客户端认证失败"),
     ACCESS_UNAUTHORIZED(213, "未授权"),
-    TOKEN_INVALID_OR_EXPIRED(214, "token非法或失效"),
-    TOKEN_ACCESS_FORBIDDEN(215, "token禁止访问"),
+    TOKEN_INVALID_OR_EXPIRED(214, "token非法或失效,[没权限]"),
+    TOKEN_ACCESS_FORBIDDEN(215, "token禁止访问[权限不足]"),
     FLOW_LIMITING(210, "系统限流"),
     DEGRADATION(220, "系统功能降级"),
     ABNORMAlACCOUNT(8012,"账户异常"),
     TOEKNINVALIDOREXPIREDHASH(8013,"token 无效或已过期"),
-    SERVICE_NO_AUTHORITY(221, "服务未授权");
+    SERVICE_NO_AUTHORITY(221, "服务未授权"),
+    FORBIDDEN(403, "没有相关权限");
 
     public final Integer code;
     public final String messages;
@@ -46,4 +47,6 @@ public enum RestEnum {
         }
         return responseMessages;
     }
+
+
 }

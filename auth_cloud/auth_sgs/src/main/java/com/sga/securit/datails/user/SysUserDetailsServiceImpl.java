@@ -87,6 +87,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
     private SysUserDatails loadUser(String username){
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("admin"));
+        authorities.add(new SimpleGrantedAuthority("root"));
         return  SysUserDatails.builder().userId(1L)
                 .username(username)
                 .enabled(true)

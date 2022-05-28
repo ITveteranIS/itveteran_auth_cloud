@@ -18,4 +18,5 @@ import java.util.List;
 public interface ISystPermissionService extends IService<SystPermission> {
     List<SystPermission> listPermRoles();
     Boolean refreshPermRolesRules();
+    boolean nameRole(String role);
 }

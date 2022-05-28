@@ -44,7 +44,6 @@ public class SecurityGlobalFilter implements GlobalFilter, Ordered {
         }
         // 解析JWT获取jti，以jti为key判断redis的黑名单列表是否存在，存在则拦截访问
         token = StrUtil.replaceIgnoreCase(token, SecurityConstants.JWT_PREFIX, Strings.EMPTY);
-        System.out.println(token);
         String payload = StrUtil.toString(JWSObject.parse(token).getPayload());
         request = exchange.getRequest().mutate()
                 .header(SecurityConstants.JWT_PAYLOAD_KEY, URLEncoder.encode(payload, "UTF-8"))

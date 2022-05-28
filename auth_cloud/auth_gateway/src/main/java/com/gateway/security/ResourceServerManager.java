@@ -5,6 +5,7 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import com.bases.constan.GlobalConstants;
 import com.bases.constan.SecurityConstants;
+//import com.boots.service.ISystPermissionService;
 import com.gateway.util.UrlPatternUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -23,9 +24,11 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author : ITveteran•JIE
@@ -49,6 +52,7 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext authorizationContext) {
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
+
         if (request.getMethod() == HttpMethod.OPTIONS) { // 预检请求放行
             return Mono.just(new AuthorizationDecision(true));
         }
@@ -67,28 +71,49 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
         if (StrUtil.isBlank(token) || !StrUtil.startWithIgnoreCase(token, SecurityConstants.JWT_PREFIX)) {
             return Mono.just(new AuthorizationDecision(false));
         }
-
-        // 从redis中获取资源权限
         Map<String, Object> urlPermRolesRules = redisTemplate.opsForHash().entries(GlobalConstants.URL_PERM_ROLES_KEY);
         List<String> authorizedRoles = new ArrayList<>(); // 拥有访问权限的角色
         boolean requireCheck = false; // 是否需要鉴权，默认未设置拦截规则不需鉴权
+        // 从redis中获取资源权限
+//        URI uri = authorizationContext.getExchange().getRequest().getURI();
+//        Object obj = redisTemplate.opsForHash().get(GlobalConstants.URL_PERM_ROLES_KEY, uri.getPath());
+        System.out.println(urlPermRolesRules+"==================================================");
 
+//        if (urlPermRolesRules.isEmpty()){
+//            System.out.println("没有权限");
+//            requireCheck=false;
+//        }
+
+
+
+        // 是否需要鉴权，默认未设置拦截规则不需鉴权
+        System.out.println(urlPermRolesRules.entrySet());
         // 获取当前资源 所需要的角色
         for (Map.Entry<String, Object> permRoles : urlPermRolesRules.entrySet()) {
+
             String perm = permRoles.getKey();
+            System.out.println(perm+"permpermpermpermpermpermperm");
+            System.out.println(pathMatcher.match(perm, restfulPath) +"-------testppppppppppppppppppppppppppppp");
             if (pathMatcher.match(perm, restfulPath)) {
+                System.out.println(restfulPath + "url");
                 List<String> roles = Convert.toList(String.class, permRoles.getValue());
+                System.out.println(roles+"aaaaaaaaaaaaaaaaaaaaaaa");
                 authorizedRoles.addAll(Convert.toList(String.class, roles));
-                if (requireCheck == false) {
+                if (requireCheck ==false){
                     requireCheck = true;
                 }
+                System.out.println(authorizedRoles+"大喊大叫啊哈·1发达的哈德好久·的哈肯定好了·发达的哈德好久·的哈肯定好了·发达的哈德好久·的哈肯定好了·");
             }
-        }
 
-        // 如果资源不需要权限 则直接返回授权成功
-        if (!requireCheck) {
-            return Mono.just(new AuthorizationDecision(true));
+            System.out.println(requireCheck+"=============================");
         }
+        if (requireCheck==false){
+            return Mono.just(new AuthorizationDecision(false));
+        }
+        // 如果资源不需要权限 则直接返回授权成功
+//        if (!requireCheck) {
+//            return Mono.just(new AuthorizationDecision(true));
+//        }
 
         // 判断JWT中携带的用户角色是否有权限访问
         Mono<AuthorizationDecision> authorizationDecisionMono = mono
@@ -98,6 +123,13 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
                 .any(authority -> {
                     String roleCode = authority.substring(SecurityConstants.AUTHORITY_PREFIX.length()); // 用户的角色
                     boolean hasAuthorized = CollectionUtil.isNotEmpty(authorizedRoles) && authorizedRoles.contains(roleCode);
+                    System.out.println(roleCode+"当前用户角色");
+                    System.out.println(authorizedRoles);
+                    System.out.println( CollectionUtil.isNotEmpty(authorizedRoles));
+                    System.out.println( authorizedRoles.contains(roleCode));
+                    if (hasAuthorized==true) {
+                        System.out.println(hasAuthorized+"hasAuthorizedhasAuthorized");
+                    }
                     return hasAuthorized;
                 })
                 .map(AuthorizationDecision::new)

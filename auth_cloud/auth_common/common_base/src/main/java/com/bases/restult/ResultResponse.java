@@ -22,6 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+@SuppressWarnings("all")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultResponse<T> implements Serializable {
     private  Integer code;
@@ -66,11 +67,6 @@ public class ResultResponse<T> implements Serializable {
     public static <T> ResultResponse<T> forbidden() {
         return new ResultResponse<T>(RestEnum.FORBIDDEN.getCode(), RestEnum.FORBIDDEN.getMessages(), null);
     }
-    public static <T> ResultResponse<T> unauthorized(T data) {
-        return new ResultResponse<T>(RestEnum.TOEKNINVALIDOREXPIREDHASH.getCode(), RestEnum.TOEKNINVALIDOREXPIREDHASH.getMessages(), data);
-    }
-
-
     public synchronized static <T> ResultResponse<T> FAINLEDUSERNAME() {
         return build(RestEnum.USER_NOT_EXIST, null);
     }
@@ -80,7 +76,6 @@ public class ResultResponse<T> implements Serializable {
     public synchronized static <T> ResultResponse<T> TOEKNINVALIDOREXPIREDHASH() {
         return build(RestEnum.TOEKNINVALIDOREXPIREDHASH, null);
     }
-
 
     public synchronized static <T> ResultResponse<T> USERNAMEORPASSWORD() {
         return build(RestEnum.USERNAME_OR_PASSWORD_ERROR, null);

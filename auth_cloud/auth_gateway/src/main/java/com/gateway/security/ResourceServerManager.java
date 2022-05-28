@@ -75,16 +75,7 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
         List<String> authorizedRoles = new ArrayList<>(); // 拥有访问权限的角色
         boolean requireCheck = false; // 是否需要鉴权，默认未设置拦截规则不需鉴权
         // 从redis中获取资源权限
-//        URI uri = authorizationContext.getExchange().getRequest().getURI();
-//        Object obj = redisTemplate.opsForHash().get(GlobalConstants.URL_PERM_ROLES_KEY, uri.getPath());
         System.out.println(urlPermRolesRules+"==================================================");
-
-//        if (urlPermRolesRules.isEmpty()){
-//            System.out.println("没有权限");
-//            requireCheck=false;
-//        }
-
-
 
         // 是否需要鉴权，默认未设置拦截规则不需鉴权
         System.out.println(urlPermRolesRules.entrySet());
@@ -93,19 +84,17 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
 
             String perm = permRoles.getKey();
             System.out.println(perm+"permpermpermpermpermpermperm");
-            System.out.println(pathMatcher.match(perm, restfulPath) +"-------testppppppppppppppppppppppppppppp");
+            System.out.println(pathMatcher.match(perm, restfulPath) +"-------判断访问接口 权限里面是否有");
             if (pathMatcher.match(perm, restfulPath)) {
                 System.out.println(restfulPath + "url");
                 List<String> roles = Convert.toList(String.class, permRoles.getValue());
-                System.out.println(roles+"aaaaaaaaaaaaaaaaaaaaaaa");
                 authorizedRoles.addAll(Convert.toList(String.class, roles));
                 if (requireCheck ==false){
                     requireCheck = true;
                 }
-                System.out.println(authorizedRoles+"大喊大叫啊哈·1发达的哈德好久·的哈肯定好了·发达的哈德好久·的哈肯定好了·发达的哈德好久·的哈肯定好了·");
+                System.out.println(authorizedRoles+"角色集合");
             }
 
-            System.out.println(requireCheck+"=============================");
         }
         if (requireCheck==false){
             return Mono.just(new AuthorizationDecision(false));
@@ -124,9 +113,8 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
                     String roleCode = authority.substring(SecurityConstants.AUTHORITY_PREFIX.length()); // 用户的角色
                     boolean hasAuthorized = CollectionUtil.isNotEmpty(authorizedRoles) && authorizedRoles.contains(roleCode);
                     System.out.println(roleCode+"当前用户角色");
-                    System.out.println(authorizedRoles);
-                    System.out.println( CollectionUtil.isNotEmpty(authorizedRoles));
-                    System.out.println( authorizedRoles.contains(roleCode));
+                    System.out.println(hasAuthorized+"判断是否有这个角色");
+                    System.out.println(authorizedRoles+"获取出的角色");
                     if (hasAuthorized==true) {
                         System.out.println(hasAuthorized+"hasAuthorizedhasAuthorized");
                     }

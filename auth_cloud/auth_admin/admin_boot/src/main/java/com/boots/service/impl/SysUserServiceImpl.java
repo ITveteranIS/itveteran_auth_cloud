@@ -28,7 +28,6 @@ public class SysUserServiceImpl extends ServiceImpl<SystUserMapper, SystUser> im
     public UserAuthDTO getByuserName(String userName) {
         return systUserMapper.getByuserName(userName);
     }
-
     @Override
     public List<String> seleByusernameRoleCode(String userName) {
         return systUserMapper.seleByusernameRoleCode(userName);

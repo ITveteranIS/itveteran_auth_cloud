@@ -32,10 +32,5 @@ public class UserController {
         return ResultResponse.SUCCESS(iSysUserService.getByuserName(username));
     }
 
-    @ApiOperation("判断角色")
-    @GetMapping("/role")
-    public Object roles(String role){
-        return ResultResponse.SUCCESS(iSystPermissionService.nameRole(role));
-    }
 
 }

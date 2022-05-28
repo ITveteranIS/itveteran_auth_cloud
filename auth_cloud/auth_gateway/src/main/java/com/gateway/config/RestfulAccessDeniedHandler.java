@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
  * @version 1.0x
  * @Package: {"packageName":"com.gateway.config"}
  * @ClassName: {"classname":"RestfulAccessDeniedHandler"}
- * @Description: TODO {"description":""} 0_0
+ * @Description: TODO {"description":"没有相关权限 配置类"} 0_0
  * @Date : Create in {"date":"2022/5/2717:22"}
  */
 @Component

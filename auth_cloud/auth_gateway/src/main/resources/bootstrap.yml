@@ -1,85 +1,21 @@
 server:
   port: 2003
 spring:
-  main:
-    allow-bean-definition-overriding: true
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: 'http://localhost:2004/oauth/public-key'
+  profiles:
+    active: dev
   application:
     name: auth_gateway
   cloud:
     nacos:
       discovery:
-        server-addr: http://110.40.207.142:8848
+        server-addr: ENC(HjEFVrcWjSNGg4UMShnbIqPZSyiItLtwikHprbzuq/e2YOXOBdhO1Q==)
       config:
-        enabled: false
-    gateway:
-      routes: #配置路由路径
-        - id: 系统服务
-          uri: lb://admin-boot
-          predicates:
-            - Path=/admin-boot/**
-          filters:
-            - StripPrefix=1
-        - id: 认证中心
-          uri: lb://sgs-boot
-          predicates:
-            - Path=/sgs-boot/**
-          filters:
-            - StripPrefix=1
-      discovery:
-        locator:
-          enabled: true #开启从注册中心动态创建路由的功能
-          lower-case-service-id: true #使用小写服务名，默认是大写
+        enabled: true
+        server-addr: ENC(HjEFVrcWjSNGg4UMShnbIqPZSyiItLtwikHprbzuq/e2YOXOBdhO1Q==)
+        file-extension: yaml
+        namespace: 2c14ac04-82bf-4010-aafb-074ca8809d5d
+        group: DEV_GROUP
 
-  redis:
-    database: 0
-    port: 6379
-    host: 110.40.207.142
-    password: 123456
-  cache:
-    # 缓存类型
-    type: redis
-    # 缓存时间(单位：ms)
-    redis:
-      time-to-live: 3600000
-      # 缓存null值，防止缓存穿透
-      cache-null-values: true
-      # 允许使用缓存前缀，
-      use-key-prefix: true
-      # 缓存前缀，没有设置使用注解的缓存名称(value)作为前缀，和注解的key用双冒号::拼接组成完整缓存key
-      key-prefix: 'admin:'
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
-feign:
-  httpclient:
-    enabled: true
-  okhttp:
-    enabled: false
-# 是否开启本地缓存
-
-security:
-  ignoreUrls:
-    - /sgs-boot/oauth/token/**
-    - /sgs-boot/oauth/public-key
-    - /sgs-boot/test/creates
-    - /admin-boot/swagger-resources
-    - /sgs-boot/swagger-resources
-    - /admin-boot/doc.html
-    - /sgs-boot/doc.html
-    - /admin-boot/swagger-resources
-    - /admin-boot/webjars/bycdao-ui/images/ap
-    - /admin-boot/v2/api-docs
-    - /sgs-boot/webjars/bycdao-ui/images/ap
-    - /sgs-boot/v2/api-docs
-    - /sgs-boot/configuration/ui,
-    - /sgs-boot/swagger-resources/**
-    - /sgs-boot/configuration/security
-    - /sgs-boot/webjars/**
-    - /webjars/**
-
+jasypt:
+  encryptor:
+    password: Y6M9fAJQdU7jNp5MWITVETERAN

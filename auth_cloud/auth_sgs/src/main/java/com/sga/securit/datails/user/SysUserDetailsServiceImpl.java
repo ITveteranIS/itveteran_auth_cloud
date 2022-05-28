@@ -47,11 +47,9 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 后面从管理端获取用户信息
         ResultResponse<UserAuthDTO> result = userFeignClient.getUserByUsername(username);
-        System.out.println(result+"resultresultresultresultresultresultresult");
         SysUserDatails userDetails = null;
         if (ResultResponse.SUCCESS().getCode().equals(result.getCode())) {
             UserAuthDTO user = result.getData();
-            System.out.println(user+"useruseruseruseruseruseruseruseruseruser");
             if (null != user) {
                 userDetails = SysUserDatails.builder()
                         .userId(user.getUserId())

@@ -56,9 +56,15 @@ public class ResultResponse<T> implements Serializable {
     public synchronized static <T> ResultResponse<T> failed(T data) {
         return build(RestEnum.SYSTEM_EXECUTION_ERROR, data);
     }
+    public synchronized static <T> ResultResponse<T>  SENTINEL_ERROR(T data) {
+        return build(RestEnum. SENTINEL_ERROR, data);
+    }
 
     public static <T> ResultResponse<T> faileds(RestEnum resultCode) {
         return result(resultCode.getCode(), resultCode.getMessages(), null);
+    }
+    public static <T> ResultResponse<T> sentinelError(String messages) {
+        return result(90121, messages, null);
     }
     public static <T> ResultResponse<T> forbidden(T data) {
         return new ResultResponse<T>(RestEnum.FORBIDDEN.getCode(), RestEnum.FORBIDDEN.getMessages(), data);

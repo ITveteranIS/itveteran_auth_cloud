@@ -1,6 +1,8 @@
 server:
   port: 2004
 spring:
+  main:
+    allow-circular-references: true
   profiles:
     active: dev
   application:
@@ -15,7 +17,6 @@ spring:
         file-extension: yaml
         namespace: 2c14ac04-82bf-4010-aafb-074ca8809d5d
         group: DEV_GROUP
-
 jasypt:
   encryptor:
     password: Y6M9fAJQdU7jNp5MWITVETERAN

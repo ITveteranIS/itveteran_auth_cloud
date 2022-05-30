@@ -1,6 +1,8 @@
 server:
   port: 2003
 spring:
+  main:
+    allow-circular-references: true
   profiles:
     active: dev
   application:

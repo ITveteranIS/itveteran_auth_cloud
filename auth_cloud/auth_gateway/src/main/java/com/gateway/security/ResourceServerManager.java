@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  * @version 1.0x
  * @Package: {"packageName":"com.gateway.security"}
  * @ClassName: {"classname":"ResourceServerManager"}
- * @Description: TODO {"description":"设置白名单"} 0_0
+ * @Description: TODO {"description":"设置白名单以及权限访问等过滤"} 0_0
  * @Date : Create in {"date":"2022/5/2520:06"}
  */
 @Component

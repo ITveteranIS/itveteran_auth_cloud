@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  * @version 1.0x
  * @Package: {"packageName":"com.gateway.util"}
  * @ClassName: {"classname":"ResponseUtils"}
- * @Description: TODO {"description":""} 0_0
+ * @Description: TODO {"description":"自定义错误"} 0_0
  * @Date : Create in {"date":"2022/5/2520:07"}
  */
 public class ResponseUtils {

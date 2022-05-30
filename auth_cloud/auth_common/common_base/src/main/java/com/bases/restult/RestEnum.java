@@ -35,6 +35,7 @@ public enum RestEnum {
     ABNORMAlACCOUNT(8012,"账户异常"),
     TOEKNINVALIDOREXPIREDHASH(8013,"token 无效或已过期"),
     SERVICE_NO_AUTHORITY(221, "服务未授权"),
+    SENTINEL_ERROR(9991,"操作繁忙！！"),
     FORBIDDEN(403, "没有相关权限");
 
     public final Integer code;

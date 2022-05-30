@@ -1,5 +1,7 @@
 package com.boots.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.api.dto.UserAuthDTO;
 import com.bases.restult.ResultResponse;
 import com.boots.service.ISysUserService;
@@ -26,11 +28,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private  final ISysUserService iSysUserService;
     private final ISystPermissionService iSystPermissionService;
+
     @ApiOperation("获取用户信息")
     @GetMapping("/username/{username}")
+    @SentinelResource(value = "selectByname",blockHandlerClass=com.bases.restult.sentinelHandlerconfig.SentinelHandler.class ,blockHandler = "handle")
     public Object getUserByUsername(@PathVariable String username){
         return ResultResponse.SUCCESS(iSysUserService.getByuserName(username));
     }
-
 
 }

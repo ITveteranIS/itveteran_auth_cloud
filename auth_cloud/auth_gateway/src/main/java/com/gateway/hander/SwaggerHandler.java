@@ -16,9 +16,10 @@ import java.util.Optional;
  * @version 1.0x
  * @Package: {"packageName":"com.gateway.hander"}
  * @ClassName: {"classname":"SwaggerHander"}
- * @Description: TODO {"description":""} 0_0
+ * @Description: TODO {"description":"SwaggerHandler 接口等"} 0_0
  * @Date : Create in {"date":"2022/5/250:26"}
  */
+@SuppressWarnings("all")
 @RestController
 public class SwaggerHandler {
     @Autowired(required = false)

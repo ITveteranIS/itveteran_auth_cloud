@@ -65,6 +65,11 @@
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>${spring.cloud.alibaba.nacos.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>2021.0.1.0</version>
+            </dependency>
             <!-- validation 验证依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

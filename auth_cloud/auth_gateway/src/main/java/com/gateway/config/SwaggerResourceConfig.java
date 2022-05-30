@@ -19,7 +19,7 @@ import java.util.List;
  * @version 1.0x
  * @Package: {"packageName":"com.gateway.config"}
  * @ClassName: {"classname":"SwaggerResourceConfig"}
- * @Description: TODO {"description":""} 0_0
+ * @Description: TODO {"description":"Swagger 相关配置"} 0_0
  * @Date : Create in {"date":"2022/5/250:28"}
  */
 @Slf4j

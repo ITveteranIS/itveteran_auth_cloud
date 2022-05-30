@@ -1,5 +1,7 @@
 package com.boots.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.api.dto.UserAuthDTO;
 import com.bases.restult.ResultResponse;
 import com.boots.pojo.SystUser;
@@ -28,11 +30,10 @@ public class TestControllers {
     public TestControllers(ISysUserService iSysUserService) {
         this.iSysUserService = iSysUserService;
     }
-
     @ApiOperation("添加订单")
     @PostMapping("/create")
+    @SentinelResource(value = "createTest",blockHandlerClass=com.bases.restult.sentinelHandlerconfig.SentinelHandler.class ,blockHandler = "handle")
     public Object test(){
         return "感谢访问";
     }
-
 }
